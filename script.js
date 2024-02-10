@@ -18,13 +18,27 @@ let playerSelection = prompt("Choose rock, paper or scissors").toLowerCase()
 
 function playRound(getComputerChoice, playerSelection) {
     if (getComputerChoice === playerSelection ) {
+        playerScore++
         return "it's a tie"
     }
     else if ((getComputerChoice === "rock" && playerSelection === "paper") ||
             (getComputerChoice === "scissors" && playerSelection === "rock") ||
-            (getComputerChoice === "paper" && playerSelection === "scissors") )
-    return "Very nice! You have won"
+            (getComputerChoice === "paper" && playerSelection === "scissors") ) {
+            computerScore++
+            return "Very nice! You have won" }
     else return "What a pity! You lose"
 }
 
 console.log(playRound(getComputerChoice(), playerSelection))
+
+function playGame() {
+    let computerScore = 0
+    let playerScore = 0
+
+    for (let i = 1; i <= 5; ++i)
+
+    if (playerScore > computerScore) {
+        return "you won"
+    }
+    else return "you lost"
+}
