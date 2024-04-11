@@ -1,44 +1,51 @@
-function getComputerChoice() {
-    let RandomNumber = Math.random() * 3
-    let RoundedNumber = Math.ceil(RandomNumber);
+let playerScore = 0;
+let computerScore = 0;
 
-    if ( RoundedNumber === 3 ) {
-        return  "paper"
+function getComputerChoice() {
+    let randomNumber = Math.random() * 3;
+    let roundedNumber = Math.floor(randomNumber);
+
+    if (roundedNumber === 2) {
+        return "scissors";
+    } else if (roundedNumber === 1) {
+        return "rock";
+    } else {
+        return "paper";
     }
-    else if ( RoundedNumber === 2 ) {
-        return  "rock"
+}
+;
+
+function playRound(ComputerChoice, playerSelection)  {
+    if (ComputerChoice == playerSelection) {
+        return "it is a tie"
+    }
+    else if ((ComputerChoice == "paper" && playerSelection == "scissors" ) 
+    || (ComputerChoice == "rock" && playerSelection == "paper")
+    || (ComputerChoice == "scissors" && playerSelection == "rock"))
+    {   playerScore++;
+        return "you win, computer loses"
     }
     else {
-        return "scissors"
-    };
-
-}
-
-let playerSelection = prompt("Choose rock, paper or scissors").toLowerCase()
-
-function playRound(getComputerChoice, playerSelection) {
-    if (getComputerChoice === playerSelection ) {
-        playerScore++
-        return "it's a tie"
+        computerScore++;
+        return "computer wins, you lose"
     }
-    else if ((getComputerChoice === "rock" && playerSelection === "paper") ||
-            (getComputerChoice === "scissors" && playerSelection === "rock") ||
-            (getComputerChoice === "paper" && playerSelection === "scissors") ) {
-            computerScore++
-            return "Very nice! You have won" }
-    else return "What a pity! You lose"
 }
-
-console.log(playRound(getComputerChoice(), playerSelection))
 
 function playGame() {
-    let computerScore = 0
-    let playerScore = 0
-
-    for (let i = 1; i <= 5; ++i)
-
-    if (playerScore > computerScore) {
-        return "you won"
+    for(let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Choose rock, paper or scissors").toLowerCase()
+        let computerChoice = getComputerChoice()
+        let result = playRound(computerChoice, playerSelection);
+        console.log(result);
     }
-    else return "you lost"
+
+    if (computerScore > playerScore) {
+        return "The computer won the game";
+    } else if (computerScore < playerScore) {
+        return "You won the game";
+    } else {
+        return "It is a total tie";
+    }
 }
+
+console.log(playGame())
